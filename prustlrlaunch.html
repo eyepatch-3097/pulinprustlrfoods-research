@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prustlr Foods: Healthy Oats Launch Strategy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9F9F9;
+            color: #3A3A3A;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4ECDC4, #45B7D1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+            padding-left: 2.5rem; 
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0.25rem;
+            width: 2px;
+            height: 100%;
+            background-color: #45B7D1;
+        }
+        .timeline-item:last-child:before {
+            display: none;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            height: 1.25rem;
+            width: 1.25rem;
+            border-radius: 9999px;
+            background-color: white;
+            border: 3px solid #45B7D1;
+        }
+        .flowchart-arrow {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            margin: 1rem 0;
+        }
+         .flowchart-arrow::after {
+            content: '▼';
+            font-size: 2rem;
+            color: #45B7D1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-gray-800">Prustlr Foods</h1>
+            <p class="text-xl font-semibold gradient-text">The Smarter Start to Your Day</p>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="introduction" class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Launching a Revolution in Healthy Eating</h2>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600">This is the strategic roadmap for launching Prustlr Foods, a new healthy oats brand poised to capture the hearts and plates of India. We're not just selling oats; we're fueling a healthier lifestyle.</p>
+        </section>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <section id="market-growth" class="stat-card lg:col-span-2">
+                <h3 class="text-2xl font-bold mb-4 text-center">The Golden Opportunity: A Market Ready for Growth</h3>
+                <p class="text-center text-gray-600 mb-6">The Indian consumer's appetite for healthy, convenient food is growing rapidly. The oats market, specifically for human consumption, is a key indicator of this shift, showing robust and sustained growth projections.</p>
+                <div class="chart-container">
+                    <canvas id="marketGrowthChart"></canvas>
+                </div>
+            </section>
+
+            <section id="target-audience" class="stat-card">
+                <h3 class="text-2xl font-bold mb-4">Understanding Today's Consumer</h3>
+                <p class="text-gray-600 mb-6">Our strategy begins with a deep understanding of who we're serving. We've identified five key consumer personas, each with unique needs and motivations, representing our core target market.</p>
+                <div class="chart-container h-64 sm:h-80 md:h-96">
+                    <canvas id="personaChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="persona-details" class="stat-card">
+                 <h3 class="text-2xl font-bold mb-4">Our Target Personas</h3>
+                 <div class="space-y-4">
+                    <div class="p-3 bg-gray-50 rounded-lg">
+                        <p class="font-bold text-lg">🏃 Fitness Enthusiasts</p>
+                        <p class="text-gray-600 text-sm">Seeking high-protein, low-carb options to fuel their active lifestyle.</p>
+                    </div>
+                     <div class="p-3 bg-gray-50 rounded-lg">
+                        <p class="font-bold text-lg">💼 Busy Professionals</p>
+                        <p class="text-gray-600 text-sm">Need quick, convenient, and healthy meals that fit into a hectic schedule.</p>
+                    </div>
+                     <div class="p-3 bg-gray-50 rounded-lg">
+                        <p class="font-bold text-lg">👨‍👩‍👧 Moms & Kids</p>
+                        <p class="text-gray-600 text-sm">Looking for nutritious, tasty, and easy-to-make options for the family.</p>
+                    </div>
+                     <div class="p-3 bg-gray-50 rounded-lg">
+                        <p class="font-bold text-lg">📱 Millennials & Gen Z</p>
+                        <p class="text-gray-600 text-sm">Value brand story, sustainability, taste, and trendy packaging.</p>
+                    </div>
+                     <div class="p-3 bg-gray-50 rounded-lg">
+                        <p class="font-bold text-lg">👵 Health-Conscious Seniors</p>
+                        <p class="text-gray-600 text-sm">Prefer heart-healthy and diabetic-friendly food choices.</p>
+                    </div>
+                 </div>
+            </section>
+
+            <section id="positioning" class="stat-card lg:col-span-2">
+                <h3 class="text-2xl font-bold mb-6 text-center">Our Winning Formula: Prustlr's Positioning</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">To stand out, we're positioned as the "Authentically Indian, Functionally Superior Oat Experience." This is built on four unshakable pillars that define our brand promise.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 border-2 border-dashed border-teal-400 rounded-lg">
+                        <p class="text-4xl mb-2">🌿</p>
+                        <h4 class="font-bold text-lg">Clean Ingredients</h4>
+                        <p class="text-sm text-gray-600">100% wholegrain oats with zero preservatives or artificial additives.</p>
+                    </div>
+                    <div class="p-4 border-2 border-dashed border-sky-500 rounded-lg">
+                        <p class="text-4xl mb-2">❤️</p>
+                        <h4 class="font-bold text-lg">Functional Benefits</h4>
+                        <p class="text-sm text-gray-600">Promoting heart health, weight management, and sustained energy.</p>
+                    </div>
+                     <div class="p-4 border-2 border-dashed border-yellow-500 rounded-lg">
+                        <p class="text-4xl mb-2">😋</p>
+                        <h4 class="font-bold text-lg">Taste & Convenience</h4>
+                        <p class="text-sm text-gray-600">Delicious flavors that are ready in minutes. Just add milk or water.</p>
+                    </div>
+                    <div class="p-4 border-2 border-dashed border-red-400 rounded-lg">
+                        <p class="text-4xl mb-2">♻️</p>
+                        <h4 class="font-bold text-lg">Sustainability</h4>
+                        <p class="text-sm text-gray-600">Eco-friendly packaging and locally sourced ingredients.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="product-strategy" class="stat-card">
+                <h3 class="text-2xl font-bold mb-4">A Product for Every Palate</h3>
+                <p class="text-gray-600 mb-6">Our product strategy is tiered to cater to diverse needs and preferences, from everyday essentials to premium functional offerings. We'll launch with a focused set of SKUs to test the market before expanding.</p>
+                <div class="chart-container h-80 sm:h-96">
+                    <canvas id="productStrategyChart"></canvas>
+                </div>
+            </section>
+
+            <section id="channel-strategy" class="stat-card">
+                <h3 class="text-2xl font-bold mb-6">How We'll Reach Our Customers</h3>
+                 <p class="text-gray-600 mb-6">We're adopting a phased, online-first channel strategy to build brand momentum efficiently before expanding into traditional retail environments.</p>
+                <div class="flex flex-col items-center">
+                    <div class="w-full max-w-md p-4 bg-teal-50 border-l-4 border-teal-500 rounded-r-lg">
+                        <h4 class="font-bold text-lg text-teal-800">Phase 1: Online First</h4>
+                        <p class="text-sm text-teal-700">Build brand narrative and capture the digital-native consumer through D2C, marketplaces, and quick commerce.</p>
+                    </div>
+                    <div class="flowchart-arrow"></div>
+                    <div class="w-full max-w-md p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r-lg">
+                        <h4 class="font-bold text-lg text-sky-800">Phase 2: Offline Retail</h4>
+                        <p class="text-sm text-sky-700">Expand into modern trade, health stores, and strategic partnerships with cafes and fitness studios.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="marketing-timeline" class="stat-card lg:col-span-2">
+                <h3 class="text-2xl font-bold mb-6 text-center">Making an Impact: The Marketing Blueprint</h3>
+                <p class="text-center text-gray-600 mb-8">Our launch is a carefully orchestrated campaign designed to build awareness, drive trial, and foster a loyal community from day one.</p>
+                <div class="relative">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-xl text-red-500">Pre-Launch (Months 1-2)</h4>
+                        <p class="text-gray-600">Focus on education and anticipation. We'll use Instagram Reels, seed products with influencers, and build an email waitlist with exclusive freebies.</p>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-xl text-yellow-500">Launch Month</h4>
+                        <p class="text-gray-600">Maximize impact through major influencer collaborations, targeted performance ads on Meta and Google, PR outreach, and a limited-edition "Starter Kit" box.</p>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-xl text-teal-500">Ongoing (Post-Launch)</h4>
+                        <p class="text-gray-600">Build and nurture our community through social media groups, user-generated content contests, and consistent content marketing with recipes and lifestyle tips.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kpis" class="stat-card">
+                <h3 class="text-2xl font-bold mb-4">Measuring What Matters</h3>
+                <p class="text-gray-600 mb-6">Our success will be measured against a holistic framework of Key Performance Indicators (KPIs) that track our performance across the entire customer funnel, from initial awareness to long-term loyalty.</p>
+                <div class="chart-container h-80 sm:h-96">
+                    <canvas id="kpiChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="pricing-strategy" class="stat-card">
+                <h3 class="text-2xl font-bold mb-4">Smart Pricing for a Smart Product</h3>
+                <p class="text-gray-600 mb-6">Our pricing is designed to be both accessible and reflective of the premium quality and functional benefits we offer. We'll use a tiered approach to cater to different segments.</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
+                        <span class="font-semibold text-lg">Standard Oats (500g)</span>
+                        <span class="font-bold text-xl text-teal-600">₹199 – ₹249</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
+                        <span class="font-semibold text-lg">Flavored/Protein Oats</span>
+                        <span class="font-bold text-xl text-sky-600">₹299 – ₹349</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-gray-100 rounded-lg">
+                        <span class="font-semibold text-lg">Single-Serve Cup</span>
+                        <span class="font-bold text-xl text-yellow-600">₹49 – ₹69</span>
+                    </div>
+                </div>
+                 <p class="text-sm text-gray-500 mt-6">Strategic combo packs and "first try" kits will be offered on our D2C website to encourage trial and bulk purchase.</p>
+            </section>
+            
+             <section id="competitive-edge" class="stat-card lg:col-span-2">
+                <h3 class="text-2xl font-bold mb-4 text-center">Our Competitive Edge</h3>
+                <p class="text-center text-gray-600 mb-6">The market has established players, but Prustlr Foods is uniquely positioned to win. We differentiate by blending a focus on authentic Indian tastes with superior functional benefits, a combination not fully addressed by competitors.</p>
+                <div class="chart-container" style="height: 450px;">
+                    <canvas id="competitiveChart"></canvas>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto p-8 text-center">
+            <p class="font-bold text-xl mb-2">Prustlr Foods</p>
+            <p>&copy; 2025 Prustlr Foods. All Rights Reserved. A new chapter in healthy living.</p>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const FONT_COLOR = '#3A3A3A';
+    const GRID_COLOR = '#E5E7EB';
+    const PALETTE = {
+        red: '#FF6B6B',
+        turquoise: '#4ECDC4',
+        blue: '#45B7D1',
+        yellow: '#FED766',
+        lightGray: '#F9F9F9'
+    };
+
+    function wrapLabel(label, maxLength = 16) {
+        if (label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length > maxLength) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        });
+        if (currentLine) {
+            lines.push(currentLine.trim());
+        }
+        return lines;
+    }
+
+    const tooltipTitleCallback = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                          return label.join(' ');
+                        }
+                        return label;
+                    }
+                }
+            },
+            legend: {
+                labels: {
+                    color: FONT_COLOR,
+                    font: {
+                        size: 14
+                    }
+                }
+            }
+        }
+    };
+
+    const marketGrowthCtx = document.getElementById('marketGrowthChart')?.getContext('2d');
+    if (marketGrowthCtx) {
+        new Chart(marketGrowthCtx, {
+            type: 'line',
+            data: {
+                labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030'],
+                datasets: [{
+                    label: 'Oats Market Growth (CAGR 8.5%)',
+                    data: [100, 108.5, 117.7, 127.7, 138.6, 150.4, 163.2],
+                    borderColor: PALETTE.turquoise,
+                    backgroundColor: 'rgba(78, 205, 196, 0.2)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: PALETTE.turquoise,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: PALETTE.turquoise,
+                }]
+            },
+            options: {
+                ...tooltipTitleCallback,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: { color: GRID_COLOR },
+                        ticks: { 
+                            color: FONT_COLOR,
+                            callback: function(value) {
+                                return value.toFixed(0) + ' (Indexed)';
+                            }
+                        },
+                        title: { display: true, text: 'Market Size Index', color: FONT_COLOR }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: FONT_COLOR },
+                        title: { display: true, text: 'Year', color: FONT_COLOR }
+                    }
+                }
+            }
+        });
+    }
+
+    const personaCtx = document.getElementById('personaChart')?.getContext('2d');
+    if (personaCtx) {
+        new Chart(personaCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Fitness Enthusiasts', 'Busy Professionals', 'Moms & Kids', 'Millennials & Gen Z', 'Health-Conscious Seniors'].map(l => wrapLabel(l)),
+                datasets: [{
+                    label: 'Target Personas',
+                    data: [25, 30, 20, 15, 10],
+                    backgroundColor: [PALETTE.red, PALETTE.turquoise, PALETTE.blue, PALETTE.yellow, '#A8DADC'],
+                    borderColor: PALETTE.lightGray,
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                ...tooltipTitleCallback,
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                     ...tooltipTitleCallback.plugins,
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        });
+    }
+
+    const productStrategyCtx = document.getElementById('productStrategyChart')?.getContext('2d');
+    if (productStrategyCtx) {
+        new Chart(productStrategyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Core Range', 'Premium/Functional', 'Innovation (Future)'],
+                datasets: [{
+                    label: 'Number of Initial SKUs',
+                    data: [4, 3, 2],
+                    backgroundColor: [PALETTE.turquoise, PALETTE.blue, PALETTE.yellow],
+                    borderRadius: 6,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                ...tooltipTitleCallback,
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: { color: GRID_COLOR },
+                        ticks: { color: FONT_COLOR, stepSize: 1 }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: FONT_COLOR, font: {size: 14} }
+                    }
+                },
+                 plugins: {
+                     ...tooltipTitleCallback.plugins,
+                    legend: { display: false }
+                 }
+            }
+        });
+    }
+
+    const kpiCtx = document.getElementById('kpiChart')?.getContext('2d');
+    if (kpiCtx) {
+        new Chart(kpiCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Awareness', 'Engagement', 'Conversion', 'Retention', 'Growth'],
+                datasets: [{
+                    label: 'Focus Area Score',
+                    data: [90, 85, 80, 95, 75],
+                    backgroundColor: 'rgba(78, 205, 196, 0.2)',
+                    borderColor: PALETTE.turquoise,
+                    pointBackgroundColor: PALETTE.turquoise,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: PALETTE.turquoise
+                }]
+            },
+            options: {
+                 ...tooltipTitleCallback,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: GRID_COLOR },
+                        grid: { color: GRID_COLOR },
+                        pointLabels: {
+                            color: FONT_COLOR,
+                            font: { size: 14 }
+                        },
+                        ticks: {
+                            color: FONT_COLOR,
+                            backdropColor: 'transparent',
+                            stepSize: 20
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+    }
+    
+    const competitiveCtx = document.getElementById('competitiveChart')?.getContext('2d');
+    if (competitiveCtx) {
+        new Chart(competitiveCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Quaker', 'Saffola', 'Bagrry\'s', 'True Elements', 'Prustlr (Proposed)'],
+                datasets: [
+                    {
+                        label: 'Indian Flavor Focus',
+                        data: [2, 8, 7, 3, 9],
+                        backgroundColor: PALETTE.turquoise,
+                    },
+                    {
+                        label: 'Functional Benefits',
+                        data: [4, 6, 6, 7, 9],
+                         backgroundColor: PALETTE.blue,
+                    },
+                     {
+                        label: 'Premium Positioning',
+                        data: [5, 3, 5, 8, 7],
+                        backgroundColor: PALETTE.red,
+                    }
+                ]
+            },
+            options: {
+                ...tooltipTitleCallback,
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        stacked: true,
+                        grid: { color: GRID_COLOR },
+                        ticks: { color: FONT_COLOR },
+                        title: { display: true, text: 'Relative Score (out of 10)', color: FONT_COLOR }
+                    },
+                    y: {
+                        stacked: true,
+                        grid: { display: false },
+                        ticks: { color: FONT_COLOR, font: {size: 14} }
+                    }
+                },
+                plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Brand Positioning Comparison (Illustrative)',
+                        color: FONT_COLOR,
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+    }
+});
+</script>
+
+</body>
+</html>
