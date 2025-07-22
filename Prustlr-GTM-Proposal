@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prustlr Foods: Go-To-Market Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Earthy Growth: A calm, professional palette with warm neutrals (BG: #FDFBF8), an earthy primary color (UI: #4A5759), a secondary shade (UI Hover: #6B7A7D), and a warm accent for highlights (CTA: #E76F51). -->
+    <!-- Application Structure Plan: A tabbed dashboard SPA with three core sections: 'Shopify Blueprint,' 'Brand Positioning,' and 'Sales Growth.' This structure was chosen to break down the complex GTM plan into manageable, focused areas for the founder. It allows for non-linear exploration of the key deliverables. User flow: User lands, sees the overview, clicks a tab (e.g., 'Shopify') to see the detailed plan for that area. Within each tab, interactive diagrams (customer journey flowchart, positioning matrix, channel strategy map) encourage engagement and make the strategic concepts tangible and easier to grasp than a linear document. -->
+    <!-- Visualization & Content Choices: 
+        - Shopify Customer Journey: Goal: Organize/Change. Viz: HTML/CSS flowchart. Interaction: Clickable stages reveal details. Justification: Visually maps the user experience and integrates partnership touchpoints logically. Method: HTML/JS.
+        - Brand Positioning: Goal: Compare/Organize. Viz: HTML/CSS 2x2 Matrix & interactive cards. Interaction: Hover effects on matrix, click-to-reveal on cards. Justification: Clearly shows market position and breaks down complex messaging into digestible pieces. Method: HTML/JS.
+        - Sales Strategy: Goal: Organize/Inform. Viz: HTML/CSS channel diagram & Chart.js doughnut chart. Interaction: Clickable nodes on the diagram. Justification: Provides a high-level overview of the multi-channel approach and a quantitative snapshot of the focus. Method: HTML/JS, Chart.js.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FDFBF8;
+            color: #264653;
+        }
+        .tab-active {
+            border-bottom: 2px solid #E76F51;
+            color: #E76F51;
+            font-weight: 600;
+        }
+        .tab-inactive {
+            border-bottom: 2px solid transparent;
+            color: #4A5759;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .journey-step {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .journey-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #E9C46A;
+        }
+        .journey-arrow {
+            color: #A8A8A8;
+            align-self: center;
+        }
+        .positioning-matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 0.5rem;
+            border-left: 2px solid #A8A8A8;
+            border-bottom: 2px solid #A8A8A8;
+            position: relative;
+        }
+        .matrix-quadrant {
+            padding: 1rem;
+            border-top: 1px dashed #D1D5DB;
+            border-right: 1px dashed #D1D5DB;
+        }
+        .matrix-label {
+            position: absolute;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6B7A7D;
+        }
+        .prustlr-dot {
+            background-color: #E76F51;
+            box-shadow: 0 0 0 8px rgba(231, 111, 81, 0.3);
+        }
+        .strategy-card {
+            transition: all 0.3s ease;
+        }
+        .strategy-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 400px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#264653]">Prustlr Foods: Go-To-Market Proposal</h1>
+            <p class="mt-2 text-lg text-[#4A5759]">Prepared for the Founder by Shyama (Partnerships & D2C Specialist)</p>
+        </header>
+
+        <nav class="flex justify-center border-b border-gray-200 mb-12">
+            <button data-tab="shopify" class="tab-btn py-4 px-6 text-lg transition-colors duration-300 tab-active">Shopify Blueprint</button>
+            <button data-tab="positioning" class="tab-btn py-4 px-6 text-lg transition-colors duration-300 tab-inactive">Brand Positioning</button>
+            <button data-tab="sales" class="tab-btn py-4 px-6 text-lg transition-colors duration-300 tab-inactive">Sales Growth Engine</button>
+        </nav>
+
+        <main>
+            <section id="shopify" class="content-section active">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-bold mb-4">The D2C Engine: Shopify Blueprint</h2>
+                    <p class="text-lg text-gray-600">This section outlines the strategic foundation for Prustlr's direct-to-consumer channel. We'll build a seamless and powerful Shopify store designed to convert visitors and foster loyalty. The plan focuses on the complete customer journey, highlighting key strategies and essential partnership integrations at every step to create a frictionless experience from discovery to repeat purchase.</p>
+                </div>
+
+                <div id="customer-journey" class="w-full overflow-x-auto pb-4">
+                    <div class="flex flex-nowrap md:flex-wrap md:justify-center items-center gap-4 min-w-[900px] md:min-w-0">
+                        <div class="journey-step flex-shrink-0 bg-white rounded-lg p-6 w-56 h-64 shadow-md cursor-pointer flex flex-col items-center text-center" data-details="awareness">
+                            <div class="text-3xl mb-3">📢</div>
+                            <h3 class="font-bold text-xl mb-2">1. Awareness</h3>
+                            <p class="text-sm text-gray-500">Creating initial buzz and driving targeted traffic.</p>
+                        </div>
+                        <div class="journey-arrow text-4xl font-light px-2">&rarr;</div>
+                        <div class="journey-step flex-shrink-0 bg-white rounded-lg p-6 w-56 h-64 shadow-md cursor-pointer flex flex-col items-center text-center" data-details="consideration">
+                            <div class="text-3xl mb-3">🤔</div>
+                            <h3 class="font-bold text-xl mb-2">2. Consideration</h3>
+                            <p class="text-sm text-gray-500">Educating and engaging potential customers.</p>
+                        </div>
+                        <div class="journey-arrow text-4xl font-light px-2">&rarr;</div>
+                        <div class="journey-step flex-shrink-0 bg-white rounded-lg p-6 w-56 h-64 shadow-md cursor-pointer flex flex-col items-center text-center" data-details="purchase">
+                            <div class="text-3xl mb-3">🛒</div>
+                            <h3 class="font-bold text-xl mb-2">3. Purchase</h3>
+                            <p class="text-sm text-gray-500">Optimizing the checkout for maximum conversion.</p>
+                        </div>
+                        <div class="journey-arrow text-4xl font-light px-2">&rarr;</div>
+                        <div class="journey-step flex-shrink-0 bg-white rounded-lg p-6 w-56 h-64 shadow-md cursor-pointer flex flex-col items-center text-center" data-details="post-purchase">
+                             <div class="text-3xl mb-3">📦</div>
+                            <h3 class="font-bold text-xl mb-2">4. Post-Purchase</h3>
+                            <p class="text-sm text-gray-500">Ensuring a delightful delivery and unboxing experience.</p>
+                        </div>
+                        <div class="journey-arrow text-4xl font-light px-2">&rarr;</div>
+                        <div class="journey-step flex-shrink-0 bg-white rounded-lg p-6 w-56 h-64 shadow-md cursor-pointer flex flex-col items-center text-center" data-details="loyalty">
+                            <div class="text-3xl mb-3">❤️</div>
+                            <h3 class="font-bold text-xl mb-2">5. Loyalty</h3>
+                            <p class="text-sm text-gray-500">Turning one-time buyers into lifelong brand advocates.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="journey-details-container" class="mt-8 max-w-4xl mx-auto bg-white/50 p-6 rounded-lg min-h-[200px] transition-all duration-300">
+                     <p class="text-center text-gray-500 text-lg">Click on a journey step above to see the detailed strategy.</p>
+                </div>
+            </section>
+
+            <section id="positioning" class="content-section">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Crafting the Narrative: Brand Positioning</h2>
+                    <p class="text-lg text-gray-600">This section defines Prustlr's distinct identity in a competitive market. We will establish a powerful brand narrative that connects with our target audience of busy, health-conscious individuals. By analyzing the landscape and defining our core message, we create a brand that is both memorable and meaningful.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-center mb-4">Market Positioning Matrix</h3>
+                         <div class="positioning-matrix w-full h-80 md:h-96 bg-white/50 rounded-lg shadow-sm">
+                             <div class="matrix-label -bottom-8 left-0">Taste / Indulgence</div>
+                             <div class="matrix-label -bottom-8 right-0">Health / Nutrition</div>
+                             <div class="matrix-label top-0 -left-20 text-right w-16 -rotate-90 origin-top-left">Low Convenience</div>
+                             <div class="matrix-label bottom-0 -left-20 text-right w-20 -rotate-90 origin-bottom-left">High Convenience</div>
+
+                            <div class="matrix-quadrant flex items-center justify-center text-center text-sm text-gray-500">Traditional Rolled Oats</div>
+                            <div class="matrix-quadrant flex items-center justify-center text-center text-sm text-gray-500">Health Bars, Protein Shakes</div>
+                            <div class="matrix-quadrant flex items-center justify-center text-center text-sm text-gray-500">Sugary Instant Oatmeals</div>
+                            <div class="matrix-quadrant relative flex items-center justify-center">
+                                <div class="prustlr-dot w-6 h-6 rounded-full flex items-center justify-center">
+                                    <span class="font-bold text-white text-xs">P</span>
+                                </div>
+                                <span class="absolute bottom-4 font-bold text-[#E76F51]">Prustlr</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-center mb-4">Core Messaging Strategy</h3>
+                        <div class="space-y-4">
+                           <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-[#2A9D8F]">Core Value Proposition</h4>
+                                <p class="text-gray-600">For busy go-getters who refuse to compromise on health, Prustlr is the delicious, "Overnight soaked/ Just add Hot milk" oatmeal that fuels your ambitions, anytime, anywhere. We deliver balanced nutrition without the prep time.</p>
+                           </div>
+                           <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-[#2A9D8F]">Tagline</h4>
+                                <p class="text-gray-600 font-semibold text-xl">"ON THE GO OATS"</p>
+                           </div>
+                           <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-[#2A9D8F]">Tone of Voice</h4>
+                                <p class="text-gray-600">Empowering, energetic, straightforward, and reliable. We are the supportive partner in our customer's daily hustle.</p>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="sales" class="content-section">
+                 <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-bold mb-4">The Sales Growth Engine</h2>
+                    <p class="text-lg text-gray-600">This section details a phased, multi-channel strategy to drive sustainable growth. We will build a strong D2C foundation while strategically expanding into online marketplaces and forming key partnerships. This diversified approach mitigates risk and maximizes our reach to capture the target market effectively.</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div class="strategy-card bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#E76F51]">
+                            <h4 class="text-2xl font-bold mb-2">Phase 1: D2C Foundation & Amazon Launch</h4>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Launch the Shopify store as the primary sales channel and brand hub.</li>
+                                <li>Introduce a curated product selection on Amazon Launchpad to tap into a massive user base and build social proof through reviews.</li>
+                                <li>Focus marketing on digital channels: social media ads, influencer collaborations (fitness/lifestyle), and content marketing.</li>
+                            </ul>
+                        </div>
+                        <div class="strategy-card bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#F4A261]">
+                            <h4 class="text-2xl font-bold mb-2">Phase 2: Strategic Partnerships</h4>
+                             <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li><span class="font-semibold">Corporate Wellness:</span> Tie-ups with companies for employee snack boxes and pantry stocking.</li>
+                                <li><span class="font-semibold">Fitness & Health:</span> Partnerships with gyms, yoga studios, and nutritionists for sampling and co-branded promotions.</li>
+                                <li><span class="font-semibold">Travel & Hospitality:</span> Place products in co-working spaces, airport lounges, and boutique hotels.</li>
+                            </ul>
+                        </div>
+                         <div class="strategy-card bg-white p-6 rounded-xl shadow-lg border-l-4 border-[#E9C46A]">
+                            <h4 class="text-2xl font-bold mb-2">Phase 3: Retail & Subscription</h4>
+                             <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>Explore placement in premium/gourmet food stores based on D2C sales data.</li>
+                                <li>Launch a "Subscribe & Save" model on the D2C website to build recurring revenue and enhance customer lifetime value.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-center mb-4">Hypothetical Phase 1 Channel Mix</h3>
+                        <div class="chart-container">
+                            <canvas id="salesChannelChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+        
+        <footer class="mt-20 pt-10 border-t-2 border-[#E76F51]/30">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-[#264653] mb-4">Founder's Pay-Offs</h2>
+                    <p class="mb-6 text-gray-600">Partnering on this GTM strategy provides you with tangible, long-term assets for your business.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 text-green-800 flex items-center justify-center mr-3 font-bold">✓</div>
+                            <div>
+                                <h4 class="font-semibold">A Scalable D2C Powerhouse</h4>
+                                <p class="text-gray-500">You get a fully-realized plan for a Shopify store that's built for growth, not just sales. It becomes your most valuable asset for customer data and brand building.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 text-green-800 flex items-center justify-center mr-3 font-bold">✓</div>
+                            <div>
+                                <h4 class="font-semibold">Crystal-Clear Brand Identity</h4>
+                                <p class="text-gray-500">Move beyond just a product to a brand with a purpose. This clear positioning and messaging strategy will guide all future marketing, product development, and communication efforts.</p>
+                            </div>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 text-green-800 flex items-center justify-center mr-3 font-bold">✓</div>
+                            <div>
+                                <h4 class="font-semibold">A Diversified & Actionable Sales Roadmap</h4>
+                                <p class="text-gray-500">You receive a clear, phased plan to generate revenue from multiple streams, reducing reliance on a single channel and setting the stage for sustainable long-term growth.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-[#2A9D8F] to-[#264653] text-white rounded-lg p-8">
+                    <h2 class="text-3xl font-bold mb-4">Engagement & Pricing</h2>
+                    <p class="mb-6 text-gray-200">I will act as your dedicated GTM strategist to implement this plan. This is a project-based engagement to ensure we achieve the defined goals together.</p>
+                    <div class="bg-white/10 p-6 rounded-md">
+                        <p class="text-lg font-medium">Project Scope:</p>
+                        <ul class="text-sm text-gray-300 mb-4 list-disc list-inside">
+                            <li>Monthly Retainer for Consulting: ₹40,000 / month</li>
+                            <li>Shopify Customer Journey Setup: ₹60,000 (One-time)</li>
+                            <li>Brand Positioning: ₹40,000 (One-time)</li>
+                            <li>Sales Strategy & Intros: ₹5,000 / intro (Per introduction)</li>
+                        </ul>
+                        <p class="text-gray-300">Project fees will be invoiced as per agreed milestones or monthly.</p>
+                    </div>
+                     <p class="text-xs text-gray-400 mt-4">This pricing covers strategy, vendor coordination, and initial setup oversight. Third-party app costs and ad spend are separate.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+<script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contentSections = document.querySelectorAll('.content-section');
+    const journeySteps = document.querySelectorAll('.journey-step');
+    const detailsContainer = document.getElementById('journey-details-container');
+    
+    let salesChart = null;
+
+    const journeyDetails = {
+        awareness: {
+            title: "📢 Awareness Strategy",
+            points: [
+                "<strong>Digital Advertising:</strong> Run targeted ads on Instagram, Facebook, and Google targeting interests like 'fitness', 'healthy eating', 'meal prep', and 'busy professionals'.",
+                "<strong>Content Marketing:</strong> Create blog posts and short videos around topics like '5-minute healthy breakfasts' or 'desk-side nutrition hacks'.",
+                "<strong>Influencer Seeding:</strong> Partner with micro-influencers in the health and wellness space for authentic product reviews and features."
+            ]
+        },
+        consideration: {
+            title: "🤔 Consideration & Education",
+            points: [
+                "<strong>Optimized Product Pages:</strong> Clear, benefit-driven copy, high-quality images, and transparent nutritional information.",
+                "<strong>Customer Reviews & Testimonials:</strong> Integrate a reviews app to build social proof and trust.",
+                "<strong>FAQ Section:</strong> Proactively answer potential customer questions about ingredients, preparation, and sourcing."
+            ]
+        },
+        purchase: {
+            title: "🛒 Purchase Optimization",
+            points: [
+                "<strong>Streamlined Checkout:</strong> Utilize Shopify's one-page checkout to minimize friction.",
+                "<strong>Partnership: Payment Gateways:</strong> Integrate multiple payment options (Credit/Debit Cards, UPI, Wallets) via a reliable payment aggregator.",
+                "<strong>Cart Abandonment Flow:</strong> Set up automated email reminders for users who leave items in their cart."
+            ]
+        },
+        'post-purchase': {
+            title: "📦 Post-Purchase Experience",
+            points: [
+                "<strong>Partnership: Shipping Aggregators:</strong> Integrate with a shipping aggregator to provide reliable delivery and competitive rates across India.",
+                "<strong>Order Tracking:</strong> Provide customers with clear, real-time order tracking notifications.",
+                "<strong>Branded Unboxing:</strong> Design simple, eco-friendly packaging that enhances the customer experience."
+            ]
+        },
+        loyalty: {
+            title: "❤️ Loyalty & Retention",
+            points: [
+                "<strong>Partnership: Loyalty Programs:</strong> Implement a points-based loyalty program to reward repeat purchases.",
+                "<strong>Email Marketing:</strong> Nurture customer relationships with valuable content, special offers, and new product announcements.",
+                "<strong>Subscription Model:</strong> Introduce a 'Subscribe & Save' option for convenience and to build recurring revenue."
+            ]
+        }
+    };
+
+    function switchTab(tabName) {
+        tabs.forEach(tab => {
+            if (tab.dataset.tab === tabName) {
+                tab.classList.remove('tab-inactive');
+                tab.classList.add('tab-active');
+            } else {
+                tab.classList.remove('tab-active');
+                tab.classList.add('tab-inactive');
+            }
+        });
+
+        contentSections.forEach(section => {
+            if (section.id === tabName) {
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+        
+        if (tabName === 'sales' && !salesChart) {
+             renderSalesChart();
+        }
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            switchTab(tab.dataset.tab);
+        });
+    });
+
+    journeySteps.forEach(step => {
+        step.addEventListener('click', () => {
+            const detailsKey = step.dataset.details;
+            const details = journeyDetails[detailsKey];
+
+            detailsContainer.innerHTML = `
+                <h3 class="text-2xl font-bold mb-4 text-[#264653]">${details.title}</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    ${details.points.map(point => `<li>${point}</li>`).join('')}
+                </ul>
+            `;
+            
+            journeySteps.forEach(s => s.classList.remove('ring-2', 'ring-[#E76F51]'));
+            step.classList.add('ring-2', 'ring-[#E76F51]');
+        });
+    });
+
+    function renderSalesChart() {
+        const ctx = document.getElementById('salesChannelChart').getContext('2d');
+        salesChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['D2C (Shopify)', 'Amazon', 'Strategic Partnerships'],
+                datasets: [{
+                    label: 'Channel Contribution',
+                    data: [65, 25, 10],
+                    backgroundColor: [
+                        '#E76F51',
+                        '#F4A261',
+                        '#E9C46A'
+                    ],
+                    borderColor: '#FDFBF8',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14,
+                                family: 'Poppins'
+                            },
+                             color: '#4A5759'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>
